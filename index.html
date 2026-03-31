@@ -1,692 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Samarth Niere — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #0a0a0f;
-      --surface: #121218;
-      --card: #1a1a24;
-      --accent: #00e5ff;
-      --accent2: #7c3aed;
-      --text: #e8e8f0;
-      --muted: #6b6b80;
-      --border: #2a2a38;
-      --mono: 'Space Mono', monospace;
-      --display: 'Syne', sans-serif;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samartha Nere | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }body {
+        background: #0f172a;
+        color: #fff;
     }
 
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--display);
-      overflow-x: hidden;
+    header {
+        background: #1e293b;
+        padding: 15px;
+        text-align: center;
     }
 
-    /* ─── GRID OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
+    header h1 {
+        color: #38bdf8;
     }
 
-    /* ─── NOISE TEXTURE ─── */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    }
-
-    section, nav, footer { position: relative; z-index: 1; }
-
-    /* ─── NAV ─── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.2rem 4rem;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
+        margin-top: 10px;
     }
 
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 0.9rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
+    nav a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
     }
 
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-
-    .nav-links a {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+    nav a:hover {
+        color: #38bdf8;
     }
 
-    .nav-links a:hover { color: var(--accent); }
-
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 8rem 4rem 4rem;
-      gap: 4rem;
+    section {
+        padding: 40px;
+        text-align: center;
     }
 
-    .hero-left { animation: fadeUp 0.9s ease both; }
-
-    .hero-tag {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+    .skills span {
+        display: inline-block;
+        background: #38bdf8;
+        color: black;
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
     }
 
-    .hero-tag::before {
-      content: '';
-      display: inline-block;
-      width: 2rem; height: 1px;
-      background: var(--accent);
+    .project {
+        background: #1e293b;
+        margin: 10px auto;
+        padding: 15px;
+        border-radius: 10px;
+        width: 80%;
     }
 
-    .hero-name {
-      font-family: var(--display);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-name span {
-      -webkit-text-stroke: 1px var(--accent);
-      color: transparent;
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.75;
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--bg);
-      background: var(--accent);
-      padding: 0.85rem 2rem;
-      text-decoration: none;
-      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .hero-cta:hover { background: #00b8d9; transform: translateY(-2px); }
-
-    /* ─── TERMINAL CARD ─── */
-    .hero-right {
-      animation: fadeUp 0.9s 0.2s ease both;
-    }
-
-    .terminal {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .terminal-bar {
-      background: var(--card);
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot-red { background: #ff5f57; }
-    .dot-yellow { background: #febc2e; }
-    .dot-green { background: #28c840; }
-
-    .terminal-title {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .terminal-body {
-      padding: 1.5rem;
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      line-height: 2;
-    }
-
-    .t-prompt { color: var(--accent); }
-    .t-cmd { color: #e8e8f0; }
-    .t-out { color: var(--muted); padding-left: 1rem; }
-    .t-key { color: #7c3aed; }
-    .t-val { color: #34d399; }
-    .t-cursor {
-      display: inline-block;
-      width: 8px; height: 14px;
-      background: var(--accent);
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-    }
-
-    /* ─── SECTION COMMONS ─── */
-    section { padding: 6rem 4rem; }
-
-    .section-label {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 3rem;
-    }
-
-    /* ─── ABOUT ─── */
-    #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
-
-    .about-text { color: var(--muted); line-height: 1.85; font-size: 1rem; }
-    .about-text p + p { margin-top: 1.2rem; }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--accent);
-    }
-
-    .stat-num {
-      font-family: var(--mono);
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
-      letter-spacing: 0.05em;
-    }
-
-    /* ─── SKILLS ─── */
-    #skills {}
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .skill-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-      cursor: default;
-    }
-
-    .skill-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-
-    .skill-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,229,255,0.04), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .skill-card:hover::after { opacity: 1; }
-
-    .skill-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .skill-name {
-      font-size: 1.2rem;
-      font-weight: 800;
-      margin-bottom: 0.6rem;
-      letter-spacing: -0.01em;
-    }
-
-    .skill-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-
-    .skill-bar-wrap {
-      margin-top: 1.2rem;
-      height: 3px;
-      background: var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .skill-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 2px;
-      transition: width 1s ease;
-    }
-
-    .skill-level {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* ─── PROJECTS ─── */
-    #projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .project-card:hover {
-      border-color: var(--accent2);
-      transform: translateY(-4px);
-    }
-
-    .project-num {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--accent2);
-      letter-spacing: 0.2em;
-      margin-bottom: 1rem;
-    }
-
-    .project-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 0.8rem;
-    }
-
-    .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 1.2rem;
-    }
-
-    .tag {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      padding: 0.3rem 0.7rem;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* ─── EDUCATION ─── */
-    #education {}
-
-    .edu-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      max-width: 700px;
-    }
-
-    .edu-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-    }
-
-    .edu-degree {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 0.4rem;
-    }
-
-    .edu-school {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      margin-bottom: 1.2rem;
-    }
-
-    .edu-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
-
-    .edu-year {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--bg);
-      background: var(--accent2);
-      padding: 0.3rem 0.8rem;
-      margin-top: 1.2rem;
-      letter-spacing: 0.1em;
-    }
-
-    /* ─── CONTACT ─── */
-    #contact {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .contact-inner { max-width: 600px; margin: 0 auto; }
-    .contact-inner .section-title { margin-bottom: 1rem; }
-
-    .contact-sub {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-      margin-bottom: 3rem;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .contact-btn {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.9rem 2rem;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      color: var(--text);
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-    }
-
-    .contact-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .contact-btn.primary {
-      border-color: var(--accent);
-      color: var(--bg);
-      background: var(--accent);
-    }
-
-    .contact-btn.primary:hover { background: #00b8d9; }
-
-    /* ─── FOOTER ─── */
     footer {
-      padding: 2rem 4rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+        background: #1e293b;
+        text-align: center;
+        padding: 10px;
     }
+</style>
 
-    .footer-left {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-    }
-
-    .footer-right {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-    }
-
-    .footer-right span { color: var(--accent); }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 900px) {
-      nav { padding: 1.2rem 2rem; }
-      .nav-links { display: none; }
-      #hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
-      .hero-right { display: none; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-      section { padding: 4rem 2rem; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; }
-    }
-  </style>
 </head>
-<body>
-
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">SN_PORTFOLIO.EXE</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-left">
-      <div class="hero-tag">Available for collaboration</div>
-      <h1 class="hero-name">
-        Samarth<br><span>Nere</span>
-      </h1>
-      <p class="hero-desc">
-        First-year Diploma student passionate about programming and building things with code. Exploring C, C++, Java, Python, and web development.
-      </p>
-      <a href="#contact" class="hero-cta">Get in Touch →</a>
+<body><header>
+    <h1>Samartha Nere</h1>
+    <p>IT Student | Aspiring Cloud Engineer</p>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header><section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I am Samartha Nere, an IT student with skills in HTML, CSS, and C++. I am passionate about technology and aim to become a Cloud Engineer in the future.</p>
+</section><section id="skills" class="skills">
+    <h2>Skills</h2>
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>C++</span>
+</section><section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+        <h3>Portfolio Website</h3>
+        <p>A personal portfolio website built using HTML and CSS.</p>
     </div>
-
-    <div class="hero-right">
-      <div class="terminal">
-        <div class="terminal-bar">
-          <div class="dot dot-red"></div>
-          <div class="dot dot-yellow"></div>
-          <div class="dot dot-green"></div>
-          <span class="terminal-title">samarth@portfolio ~ </span>
-        </div>
-        <div class="terminal-body">
-          <div><span class="t-prompt">$ </span><span class="t-cmd">whoami</span></div>
-          <div class="t-out"><span class="t-val">Samarth Niere</span></div>
-          <br>
-          <div><span class="t-prompt">$ </span><span class="t-cmd">cat profile.json</span></div>
-          <div class="t-out">{</div>
-          <div class="t-out">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-val">"Diploma Student (1st Year)"</span>,</div>
-          <div class="t-out">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-val">"Learning & Growing"</span>,</div>
-          <div class="t-out">&nbsp;&nbsp;<span class="t-key">"languages"</span>: [</div>
-          <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"C"</span>, <span class="t-val">"C++"</span>, <span class="t-val">"Java"</span>,</div>
-          <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">"Python"</span>, <span class="t-val">"HTML/CSS"</span></div>
-          <div class="t-out">&nbsp;&nbsp;],</div>
-          <div class="t-out">&nbsp;&nbsp;<span class="t-key">"passion"</span>: <span class="t-val">"Building cool stuff"</span></div>
-          <div class="t-out">}</div>
-          <br>
-          <div><span class="t-prompt">$ </span><span class="t-cursor"></span></div>
-        </div>
-      </div>
+    <div class="project">
+        <h3>C++ Programs</h3>
+        <p>Basic programs demonstrating logic building and problem solving.</p>
     </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-grid">
-      <div>
-        <div class="section-label">// 01. About</div>
-        <h2 class="section-title">Who I Am</h2>
-        <div class="about-text">
-          <p>Hi! I'm Samarth Niere, a first-year Diploma student with a deep curiosity for computers and programming. I started my coding journey with the fundamentals — C and C++ — and have since expanded into Java, Python, and front-end web development.</p>
-          <p>I enjoy breaking down complex problems, writing clean code, and learning how software actually works under the hood. I'm always eager to take on new challenges and level up my skills.</p>
-          <p>My goal is to become a well-rounded developer and eventually contribute to meaningful projects in tech.</p>
-        </div>
-      </div>
-      <div class="stat-grid">
-        <div class="stat-card">
-          <div class="stat-num">5+</div>
-          <div class="stat-label">Languages Learned</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">1st</div>
-          <div class="stat-label">Year of Diploma</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">∞</div>
-          <div class="stat-label">Curiosity Level</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Dedicated to Growth</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-label">// 02. Skills</div>
-    <h2 class="section-title">Tech I Know</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <span class="skill-icon">⚙️</span>
-        <div class="skill-name">C Language</div>
-        <div class="skill-desc">Foundation of programming. Learned pointers, memory management, loops, functions, and data structures.</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width: 75%"></div></div>
-        <div class="skill-level">INTERMEDIATE</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">🔧</span>
-        <div class="skill-name">C++</div>
-        <div class="skill-desc">Object-oriented programming, classes, inheritance, and STL. Built on top of C concepts with added power.</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width: 65%"></div></div>
-        <div class="skill-level">LEARNING</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">☕</span>
-        <div class="skill-name">Java</div>
-        <div class="skill-desc">OOP principles, JVM, classes and objects, and basic Java programs. Strong structured language skills.</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width: 60%"></div></div>
-        <div class="skill-level">LEARNING</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">🐍</span>
-        <div class="skill-name">Python</div>
-        <div class="skill-desc">Clean syntax, scripts, logic building, and basic automation. Loved for readability and versatility.</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width: 70%"></div></div>
-        <div class="skill-level">INTERMEDIATE</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">🌐</span>
-        <div class="skill-name">HTML & CSS</div>
-        <div class="skill-desc">Building web pages, styling layouts, responsive design, and bringing ideas to life in the browser.</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width: 80%"></div></div>
-        <div class="skill-level">CONFIDENT</div>
-      </div>
-      <div class="skill-card">
-        <span class="skill-icon">🧠</span>
-        <div class="skill-name">Problem Solving</div>
-        <div class="skill-desc">Breaking down logic, debugging code, and thinking algorithmically to find clean, efficient solutions.</div>
-        <div class="skill-bar-wrap"><div class="skill-bar" style="width:
+</section><section id="contact">
+    <h2>Contact</h2>
+    <p>Email: your-email@example.com</p>
+</section><footer>
+    <p>© 2026 Samartha Nere</p>
+</footer></body>
+</html>
